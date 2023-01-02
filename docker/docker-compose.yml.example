@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db:
+    image: mysql/mysql-server:latest
+    container_name: 'name'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - 'external_port:container_port'
+    expose:
+      - 'port'
+    volumes:
+      - volume:/var/lib/mysql
+volumes:
+  mysql-volume:
