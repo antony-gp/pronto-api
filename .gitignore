@@ -35,4 +35,6 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # Environmet
+.env
+/prisma/migrations
 /docker/docker-compose.yml

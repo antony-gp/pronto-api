@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id    Int    @id @default(autoincrement())
+  email String @unique @db.VarChar(320)
+  name  String @db.VarChar(250)
+  User  User[] @ignore
+
+  @@map("companies")
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  companyId Int
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade) @ignore
+  email     String  @db.VarChar(320)
+  name      String  @db.VarChar(250)
+  isAdmin   Boolean @default(false)
+  clocks    Clock[] @ignore
+
+  @@unique([companyId, email])
+  @@map("users")
+}
+
+enum ClockType {
+  entrance
+  exit
+}
+
+model Clock {
+  id       Int       @id @default(autoincrement())
+  datetime DateTime  @default(now())
+  type     ClockType
+  userId   Int
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade) @ignore
+
+  @@unique([datetime, userId, type])
+  @@map("clocks")
+}
