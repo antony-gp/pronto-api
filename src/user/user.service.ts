@@ -8,7 +8,7 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository, private readonly companyService: CompanyService) { }
+  constructor(private readonly userRepository: UserRepository, private readonly companyService: CompanyService) {}
 
   async findById(companyId: number, id: number) {
     await this.companyService.findById(companyId);

@@ -7,7 +7,7 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 
 @Injectable()
 export class CompanyService {
-  constructor(private readonly companyRepository: CompanyRepository) { }
+  constructor(private readonly companyRepository: CompanyRepository) {}
 
   async findById(id: number) {
     const company = await this.companyRepository.findFirst({ id });
