@@ -1,19 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CompanyService } from '../company/company.service';
-import { CompanyRepository } from '../company/company.repository';
 import { PrismaModule } from '../prisma/prisma.module';
 import { UserController } from './user.controller';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
+import { CompanyModule } from '../company/company.module';
 
 describe('UserController', () => {
   let controller: UserController, service: UserService, repository: UserRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [PrismaModule],
+      imports: [PrismaModule, CompanyModule],
       controllers: [UserController],
-      providers: [UserService, UserRepository, CompanyService, CompanyRepository],
+      providers: [UserService, UserRepository],
     }).compile();
 
     controller = module.get<UserController>(UserController);
