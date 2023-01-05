@@ -1,4 +1,5 @@
-import { IsBoolean, IsEmail, IsDefined, IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsDefined, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsValidPassword } from '../../../shared/decorator/index.decorator';
 
 export class CreateUserDto {
   @IsDefined()
@@ -6,6 +7,13 @@ export class CreateUserDto {
   @IsString()
   @IsEmail()
   email: string;
+
+  @IsDefined()
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(8)
+  @IsValidPassword()
+  password: string;
 
   @IsDefined()
   @IsNotEmpty()

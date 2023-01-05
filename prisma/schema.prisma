@@ -21,6 +21,7 @@ model User {
   companyId Int
   company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade) @ignore
   email     String  @db.VarChar(320)
+  password  String  @db.Text()
   name      String  @db.VarChar(250)
   isAdmin   Boolean @default(false)
   clocks    Clock[] @ignore

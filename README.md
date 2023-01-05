@@ -1,6 +1,7 @@
 # TODO
 
-- Authentication
+- Authorization
+- Encryption
 - Alias for file paths
 - Constants instead of hard coded values
 - Unit and integration tests
